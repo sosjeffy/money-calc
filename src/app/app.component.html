@@ -1,0 +1,64 @@
+<div class="content" role="main">
+<div class="title"><h1> Welcome to the Money Calculator.</h1></div>
+  <button type="button" class="btn btn-outline-info" (click)="toggle()">{{instructionsText}}</button>
+  <div *ngIf="shown" class="paragraph">
+    <p><strong>What is this?</strong></p>
+    <p>I was curious about how account balances can change over time, when you take into withdrawal rates. Most,
+      if not all, similar calculators that I found online focused primarily on total balance at a certain age,
+      assuming a certain yield, with no way to take into account regular withdrawals. This website is not meant to be
+      financial advice and I do not guarantee that any numbers outputted are accurate.
+    </p>
+    <hr>
+    <p><strong>Naming the Scenario</strong></p>
+    <p>We'd define a&nbsp;<em>scenario</em>&nbsp;as the specific numerical values (initial balance, starting age, ending age, etc)
+      that is entered into the form. In order to help you differentiate between different scenarios (should you choose
+      to use add multiple for comparisons), you can name each scenario that you enter, provided that the name isn't
+      too long. You can use names of up to
+      <a href="https://en.wikipedia.org/wiki/A_rose_by_any_other_name_would_smell_as_sweet">20 characters</a>,
+      including spaces, numbers, and letters. Go crazy.
+    </p>
+    <hr>
+    <p><strong>Initial Balance</strong></p>
+    <p>The initial balance should be whatever number you want the program to start with - this number can be as low as
+      zero to as high as $1,000,000 (or more). In other words, this is the number that represents the balance of
+      your theoretical account.
+    </p>
+    <hr>
+    <p><strong>Starting Age</strong></p>
+    <p>This is the age at which you want to start counting the growth of your money. Starting age and Ending Age are
+      constant once submitted. To enter new Starting/Ending Ages, you must clear the graph.
+    </p>
+    <hr>
+    <p><strong>Ending Age</strong></p>
+    <p>This is the age at which you want us to stop counting the growth of your money.
+      After all, the graph has to end somewhere! Also: Starting age and Ending Age are constant once submitted.
+      To enter new Starting/Ending Ages, you must clear the graph.
+    </p>
+    <hr>
+    <p><strong>Age to Use Money</strong></p>
+    <p>This is the age at which you want to start doing withdrawals from your account.
+      If you don't want the effect of withdrawals to drastically impact your outcome, you can set this age equal to your
+      Ending Age and set withdrawal amount to $1.&nbsp;Also, tiny quirk: if you want more accuracy,
+      the Age to Use Money should be a multiple of Math.floor(stopAge / startAge).
+    </p>
+    <hr>
+    <p><strong>How Much Money</strong></p>
+    <p>This is the dollar amount that you wish to withdraw per month, starting from the age in which you would like to
+      start using your money. This could be useful especially when you'd like to see if your current retirement
+      goals can realistically last you throughout the rest of your life. The withdrawal is calculated at
+      the start of the month, and interest is applied subsequently.
+    </p>
+    <hr>
+    <p><strong>Expected Gain</strong></p>
+    <p>This is the average percentage that you expect to earn in your account in the span of a year.
+      We assume that it compounds monthly. For example, a savings account would probably earn somewhere around 1%,
+      while investments in the S&amp;P 500 could yield around
+      <a href="https://www.investopedia.com/ask/answers/042415/what-average-annual-return-sp-500.asp">8% (on average)</a>.
+    </p>
+    <hr>
+  </div>
+
+  <app-form></app-form>
+  <app-line-graph></app-line-graph>
+  <router-outlet></router-outlet>
+</div>

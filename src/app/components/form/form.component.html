@@ -1,0 +1,68 @@
+
+<form class="form-horizontal gform">
+  <h2 class="subtext"> Let's name this scenario! </h2>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <input type="text" class="form-control" maxlength="20" [(ngModel)]="name" name="name" placeholder="A Rose by Any Other Name...">
+    </div>
+  </div>
+  <h2 class="subtext"> What should the initial balance be? </h2>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <input type="number" class="form-control" [(ngModel)]="startBalance" name="start-bal" placeholder="Starting Balance (USD)">
+    </div>
+  </div>
+  <div class="form-row">
+      <h2 class="subtext col-md-6">When do we start?</h2>
+      <h2 class="subtext col-md-6">And end?</h2>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <input type="number" class="form-control" [(ngModel)]="startAge" [disabled]="graphAlreadyDrawn" name="start-age" placeholder="Starting Age (in years)">
+    </div>
+    <div class="form-group col-md-6">
+      <input type="number" class="form-control" [(ngModel)]="stopAge" [disabled]="graphAlreadyDrawn" name="stop-age" placeholder="Stopping Age (in years)">
+    </div>
+  </div>
+
+  <div class="form-row">
+      <h2 class="subtext col-md-12">When do you want to use your money? </h2>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <input type="number" class="form-control col-md-12" [(ngModel)]="withdrawAge" name="withdraw-age" placeholder="Age (in years)">
+    </div>
+  </div>
+
+  <div class="form-row">
+      <h2 class="subtext col-md-6">How much money?</h2>
+      <h2 class="subtext col-md-6"> Expected gain?</h2>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <input type="number" class="form-control"  [(ngModel)]="withdrawAmount" name="withdraw-amt" placeholder="$/month">
+    </div>
+    <div class="form-group col-md-6">
+      <input type="number" class="form-control" [(ngModel)]="expectedGain" name="expected-gain" placeholder="% per year">
+    </div>
+  </div>
+<!--- Buttons --->
+  <div class="form-group">
+    <button type="submit" [disabled]="everythingFilledOut()" (click)="calculate()" class="btn btn-primary float-right" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+      + Add
+    </button>
+    <button type="button" class="btn btn-outline-danger float-left" [disabled]="!graphAlreadyDrawn" (click)="clear()"> Clear Graph</button>
+  </div>
+</form>
+<div class="alert alert-info content" role="alert" *ngIf="submittedInfo.length > 0">
+  <h3 class="alert-heading">Added Data</h3>
+  <div *ngFor="let submitted of submittedInfo">
+    <p><strong>{{submitted[0]}}</strong>: Starting balance of ${{submitted[1]}}, looking at the time frame between
+      ages {{submitted[2]}} and {{submitted[3]}}. ${{submitted[5]}} monthly withdrawals set
+      to start at age {{submitted[4]}}. We expect to earn {{submitted[6]}}% on average.</p>
+    <hr>
+  </div>
+</div>
+
+
+
